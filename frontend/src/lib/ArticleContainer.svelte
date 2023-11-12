@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Article, Fragile, Store } from "../interfaces";
+  import type { Fragile, Store } from "../interfaces";
   import ArticleCard from "./ArticleCard.svelte";
   import ModalAddArticle from "./ModalAddArticle.svelte";
 
@@ -44,7 +44,7 @@
     </table>
     <button
       on:click={() => (showArticleModal = true)}
-      class="ms-auto text-white bg-slate-600 rounded-full p-2 hover:scale-110 hover:brightness-110 active:scale-95 active:brightness-100 transition-all"
+      class="ms-auto mt-3 text-white bg-slate-600 rounded-full p-2 hover:scale-110 hover:drop-shadow-lg hover:brightness-110 active:scale-95 active:brightness-100 transition-all"
     >
       <svg fill="currentColor" width="30" viewBox="0 0 24 24"
         ><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z" /></svg

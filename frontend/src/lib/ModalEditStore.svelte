@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Store } from "../interfaces";
+
   let dialog: HTMLDialogElement;
   export let open: boolean;
 
@@ -6,18 +8,19 @@
     dialog.showModal();
   }
 
-  let store: { name: string } = {
-    name: "",
-  };
+  export let store: Store;
 
-  async function onSubmit() {
-    const res = await fetch(`http://localhost:8080/api/v1/magasin`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(store),
-    });
+  // : { name: string } = {
+  //   name: "",
+  // };
+
+  async function onEdit() {
+    const res = await fetch(
+      `http://localhost:8080/api/v1/magasin/${store.code}?name=${store.name}`,
+      {
+        method: "PUT",
+      }
+    );
     if (res.ok) {
       window.location.reload();
     }
@@ -34,7 +37,7 @@
   }}
   on:keydown={(e) => {
     if (e.key === "escape") dialog.close();
-    else if (e.key === "Enter") onSubmit();
+    else if (e.key === "Enter") onEdit();
   }}
   class="p-4 rounded-lg drop-shadow-md bg-slate-200"
 >
@@ -47,7 +50,7 @@
       bind:value={store.name}
     />
     <button
-      on:click={onSubmit}
+      on:click={onEdit}
       class="rounded-lg bg-green-600 py-1 px-2 text-white hover:brightness-110 hover:drop-shadow-lg active:scale-90 transition-all"
       >Add</button
     >

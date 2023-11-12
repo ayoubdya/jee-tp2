@@ -54,9 +54,7 @@
   }}
   on:keydown={(e) => {
     if (e.key === "escape") dialog.close();
-  }}
-  on:keydown={(e) => {
-    if (e.key === "Enter") onSubmit();
+    else if (e.key === "Enter") onSubmit();
   }}
   class="p-4 rounded-lg drop-shadow-md bg-slate-200"
 >

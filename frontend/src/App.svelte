@@ -23,9 +23,7 @@
 />
 
 <main>
-  {#if !stores}
-    <p>Loading...</p>
-  {:else}
+  {#if stores}
     <Header {stores} bind:selectedStore />
     <ArticleContainer {selectedStore} />
   {/if}

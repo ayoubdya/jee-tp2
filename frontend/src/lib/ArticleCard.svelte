@@ -27,6 +27,7 @@
         method: "PUT",
       }
     );
+    editing = false;
     if (response.ok) {
       window.location.reload();
     }
@@ -34,35 +35,44 @@
 </script>
 
 <!-- <div class="flex justify-between py-2 px-3 bg-slate-600 rounded-lg text-white"> -->
-<tr>
+<tr
+  class="bg-white border-b"
+  on:keydown={(e) => {
+    if (e.key === "Escape") {
+      editing = false;
+    } else if (e.key === "Enter") {
+      onEdit();
+    }
+  }}
+>
   {#if !editing}
-    <td class="px-6 py-3">
+    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
       <h1>{article.name}</h1>
     </td>
-    <td class="px-6 py-3">
+    <td class="px-6 py-4">
       <p>{article.prixHT} MAD</p>
     </td>
-    <td class="px-6 py-3">
+    <td class="px-6 py-4">
       {#if article.hasOwnProperty("emballage")}
         <p>{article.emballage}</p>
       {/if}
     </td>
   {:else}
-    <td class="px-6 py-3">
+    <td class="px-6 py-4">
       <input
         class="text-black rounded-lg p-1 ring-1 ring-gray-500"
         type="text"
         bind:value={article.name}
       />
     </td>
-    <td class="px-6 py-3">
+    <td class="px-6 py-4">
       <input
         class="text-black rounded-lg p-1 ring-1 ring-gray-500"
         type="number"
         bind:value={article.prixHT}
       />
     </td>
-    <td class="px-6 py-3">
+    <td class="px-6 py-4">
       {#if article.hasOwnProperty("emballage")}
         <input
           class="text-black rounded-lg p-1 ring-1 ring-gray-500"
