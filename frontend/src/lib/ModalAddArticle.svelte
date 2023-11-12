@@ -5,8 +5,6 @@
   export let open: boolean;
   export let selectedStore: Store;
 
-  $: console.log("modal article", selectedStore);
-
   $: if (open && dialog) {
     dialog.showModal();
   }
@@ -19,8 +17,6 @@
     prixHT: 0,
     emballage: "",
   };
-
-  $: console.log("modal article article.code", article.code);
 
   async function onSubmit() {
     const url =

@@ -23,10 +23,8 @@
     on:click={() => (showStoreModal = true)}
     class=" text-white bg-slate-600 rounded-full p-2 hover:scale-110 hover:brightness-110 active:scale-95 active:brightness-100 transition-all"
   >
-    <svg fill="currentColor" width="24" viewBox="0 0 24 24"
-      ><path
-        d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM5 5V19H19V5H5ZM11 11V7H13V11H17V13H13V17H11V13H7V11H11Z"
-      /></svg
+    <svg fill="currentColor" width="15" viewBox="0 0 24 24"
+      ><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z" /></svg
     >
   </button>
 </nav>

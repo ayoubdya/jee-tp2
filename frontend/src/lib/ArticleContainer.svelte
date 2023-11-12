@@ -14,32 +14,40 @@
     console.log(articles);
     return articles;
   }
-
-  $: console.log("ArticleContainer selectedStore", selectedStore);
 </script>
 
 <div class="flex justify-center items-center mt-5 p-2 sm:p-0">
   <ModalAddArticle bind:open={showArticleModal} {selectedStore} />
-  <div class="flex flex-col gap-2 w-full sm:w-1/2">
-    {#if selectedStore}
-      {#await getArticles(selectedStore.code)}
-        <p>Loading...</p>
-      {:then articles}
-        {#each articles as article}
-          <ArticleCard {article} />
-        {/each}
-      {:catch error}
-        <p>Erreur: {error.message}</p>
-      {/await}
-    {/if}
+  <div class="flex flex-col w-full sm:w-1/2">
+    <table class="w-full text-sm text-center text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th class="px-6 py-3">Nom</th>
+          <th class="px-6 py-3">PrixHT</th>
+          <th class="px-6 py-3">Emballage</th>
+          <th class="px-6 py-3">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {#if selectedStore}
+          {#await getArticles(selectedStore.code)}
+            <p>Loading...</p>
+          {:then articles}
+            {#each articles as article}
+              <ArticleCard {article} />
+            {/each}
+          {:catch error}
+            <p>Erreur: {error.message}</p>
+          {/await}
+        {/if}
+      </tbody>
+    </table>
     <button
       on:click={() => (showArticleModal = true)}
       class="ms-auto text-white bg-slate-600 rounded-full p-2 hover:scale-110 hover:brightness-110 active:scale-95 active:brightness-100 transition-all"
     >
       <svg fill="currentColor" width="30" viewBox="0 0 24 24"
-        ><path
-          d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM5 5V19H19V5H5ZM11 11V7H13V11H17V13H13V17H11V13H7V11H11Z"
-        /></svg
+        ><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z" /></svg
       >
     </button>
   </div>
